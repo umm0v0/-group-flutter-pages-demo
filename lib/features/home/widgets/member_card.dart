@@ -12,8 +12,7 @@ class MemberCard extends StatefulWidget {
   State<MemberCard> createState() => _MemberCardState();
 }
 
-class _MemberCardState extends State<MemberCard>
-    with SingleTickerProviderStateMixin {
+class _MemberCardState extends State<MemberCard> {
   bool _isHovered = false;
 
   @override
@@ -33,11 +32,9 @@ class _MemberCardState extends State<MemberCard>
           'memberDetail',
           pathParameters: {'id': widget.member.id},
         ),
-        child: AnimatedContainer(
+        child: AnimatedSlide(
           duration: const Duration(milliseconds: 200),
-          transform: _isHovered
-              ? (Matrix4.identity()..translateByDouble(0, -4, 0, 0))
-              : Matrix4.identity(),
+          offset: _isHovered ? const Offset(0, -0.02) : Offset.zero,
           child: Card(
             elevation: _isHovered ? 8 : 1,
             shadowColor: theme.colorScheme.primary.withAlpha(
