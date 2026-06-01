@@ -22,24 +22,16 @@ class TeamData {
   // ────────────────────────────────────────────
   static List<TeamMember> get members => const [
         TeamMember(
-          id: 'leader',
-          name: '组长',
-          role: '组长',
-          task: '创建仓库、维护 main 分支、审核 PR、发布 GitHub Pages',
-          bio: '',
-          skills: [],
+          id: 'wendao',
+          name: '温道庚',
+          role: '组长 & 全栈开发',
+          task: '项目架构、代码审查、CI/CD 部署',
+          bio: 'Flutter / Dart 开发者，专注于跨平台应用开发与团队协作实践。'
+              '负责本项目从架构设计到部署上线的全流程。'
+              '熟练使用 Git 分支管理、PR 审核流程与 GitHub Pages 持续交付。',
+          skills: ['Flutter', 'Dart', 'Git', 'GitHub Actions', 'CI/CD', 'Riverpod'],
           avatarUrl: '',
-          githubUrl: '',
-        ),
-        TeamMember(
-          id: 'member-a',
-          name: '组员 A',
-          role: '组员 A',
-          task: '修改首页标题和项目口号',
-          bio: '',
-          skills: [],
-          avatarUrl: '',
-          githubUrl: '',
+          githubUrl: 'https://github.com/umm0v0',
         ),
       ];
 
