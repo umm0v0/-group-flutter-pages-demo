@@ -82,10 +82,28 @@ class TeamData {
   // ────────────────────────────────────────────
   static List<ReleaseNote> get releaseNotes => [
         const ReleaseNote(
-          version: 'v1.0.0',
+          version: 'v2.0.0',
           date: '2026-06-01',
-          title: '初始版本',
-          description: '项目初始化，待组员完善各部分内容',
+          title: '项目架构升级',
+          description: '重构为 Clean Architecture，引入 GoRouter 路由、'
+              'Riverpod 状态管理、Repository 数据层模式，'
+              '支持亮暗主题切换与响应式布局',
+          type: ReleaseNoteType.release,
+        ),
+        const ReleaseNote(
+          version: 'v1.1.0',
+          date: '2026-05-28',
+          title: 'Web 部署上线',
+          description: '配置 GitHub Actions 自动构建 Flutter Web，'
+              '产物部署到 GitHub Pages，实现持续交付',
+          type: ReleaseNoteType.deploy,
+        ),
+        const ReleaseNote(
+          version: 'v1.0.0',
+          date: '2026-05-20',
+          title: '初始版本发布',
+          description: '完成 Flutter Web 小组展示页基础功能，'
+              '包括成员介绍、项目功能展示和发布说明模块',
           type: ReleaseNoteType.release,
         ),
       ];
