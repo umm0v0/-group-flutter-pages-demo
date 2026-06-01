@@ -12,10 +12,10 @@ class TeamData {
   // ────────────────────────────────────────────
   // 组员 A 负责：修改标题和口号
   // ────────────────────────────────────────────
-  static String get projectTitle => '小组 Flutter Web 展示页';
+  static String get projectTitle => '20241060163 温道庚 · Flutter 小组展示页';
 
   static String get projectSlogan =>
-      '用 Git 协作完成一次真实的小组项目发布';
+      '单人小组的 Git 分支协作与 Flutter Web 部署实战';
 
   // ────────────────────────────────────────────
   // 组员 B 负责：修改成员列表
