@@ -12,26 +12,34 @@ class TeamData {
   // ────────────────────────────────────────────
   // 组员 A 负责：修改标题和口号
   // ────────────────────────────────────────────
-  static String get projectTitle => '20241060163 温道庚 · Flutter 小组展示页';
+  static String get projectTitle => '小组 Flutter Web 展示页';
 
   static String get projectSlogan =>
-      '单人小组的 Git 分支协作与 Flutter Web 部署实战';
+      '用 Git 协作完成一次真实的小组项目发布';
 
   // ────────────────────────────────────────────
   // 组员 B 负责：修改成员列表
   // ────────────────────────────────────────────
   static List<TeamMember> get members => const [
         TeamMember(
-          id: 'wendao',
-          name: '温道庚',
-          role: '组长 & 全栈开发',
-          task: '项目架构、代码审查、CI/CD 部署',
-          bio: 'Flutter / Dart 开发者，专注于跨平台应用开发与团队协作实践。'
-              '负责本项目从架构设计到部署上线的全流程。'
-              '熟练使用 Git 分支管理、PR 审核流程与 GitHub Pages 持续交付。',
-          skills: ['Flutter', 'Dart', 'Git', 'GitHub Actions', 'CI/CD', 'Riverpod'],
+          id: 'leader',
+          name: '组长',
+          role: '组长',
+          task: '创建仓库、维护 main 分支、审核 PR、发布 GitHub Pages',
+          bio: '',
+          skills: [],
           avatarUrl: '',
-          githubUrl: 'https://github.com/umm0v0',
+          githubUrl: '',
+        ),
+        TeamMember(
+          id: 'member-a',
+          name: '组员 A',
+          role: '组员 A',
+          task: '修改首页标题和项目口号',
+          bio: '',
+          skills: [],
+          avatarUrl: '',
+          githubUrl: '',
         ),
       ];
 
@@ -41,39 +49,15 @@ class TeamData {
   static List<ProjectFeature> get features => [
         const ProjectFeature(
           icon: Icons.web,
-          title: 'Flutter Web 应用',
-          description: '基于 Material Design 3 的响应式单页应用，支持亮色/暗色主题切换',
+          title: 'Flutter Web 单页应用',
+          description: '基于 Material Design 3 的响应式页面',
           color: Color(0xFF6366F1),
         ),
         const ProjectFeature(
           icon: Icons.account_tree,
-          title: 'Git 分支协作',
-          description: '多分支并行开发，Pull Request 代码审查，模拟真实团队工作流',
+          title: 'Git Pull Request 协作',
+          description: '分支管理与代码审查流程',
           color: Color(0xFF06B6D4),
-        ),
-        const ProjectFeature(
-          icon: Icons.merge_type,
-          title: 'PR 审核合并',
-          description: 'GitHub Pull Request 创建、代码审查、冲突解决与合并策略实践',
-          color: Color(0xFF8B5CF6),
-        ),
-        const ProjectFeature(
-          icon: Icons.rocket_launch,
-          title: 'GitHub Pages 部署',
-          description: 'Flutter Web 构建产物自动发布到 GitHub Pages，实现静态站点托管',
-          color: Color(0xFFF59E0B),
-        ),
-        const ProjectFeature(
-          icon: Icons.architecture,
-          title: 'Clean Architecture',
-          description: '分层架构设计 — 模型层、数据层、展示层分离，Repository 模式解耦数据源',
-          color: Color(0xFF10B981),
-        ),
-        const ProjectFeature(
-          icon: Icons.animation,
-          title: '动画与交互',
-          description: '自定义波浪裁剪、打字机动画、悬停浮起效果、渐入动画与时间线组件',
-          color: Color(0xFFEF4444),
         ),
       ];
 
@@ -82,28 +66,10 @@ class TeamData {
   // ────────────────────────────────────────────
   static List<ReleaseNote> get releaseNotes => [
         const ReleaseNote(
-          version: 'v2.0.0',
-          date: '2026-06-01',
-          title: '项目架构升级',
-          description: '重构为 Clean Architecture，引入 GoRouter 路由、'
-              'Riverpod 状态管理、Repository 数据层模式，'
-              '支持亮暗主题切换与响应式布局',
-          type: ReleaseNoteType.release,
-        ),
-        const ReleaseNote(
-          version: 'v1.1.0',
-          date: '2026-05-28',
-          title: 'Web 部署上线',
-          description: '配置 GitHub Actions 自动构建 Flutter Web，'
-              '产物部署到 GitHub Pages，实现持续交付',
-          type: ReleaseNoteType.deploy,
-        ),
-        const ReleaseNote(
           version: 'v1.0.0',
-          date: '2026-05-20',
-          title: '初始版本发布',
-          description: '完成 Flutter Web 小组展示页基础功能，'
-              '包括成员介绍、项目功能展示和发布说明模块',
+          date: '2026-06-01',
+          title: '初始版本',
+          description: '项目初始化，待组员完善各部分内容',
           type: ReleaseNoteType.release,
         ),
       ];
