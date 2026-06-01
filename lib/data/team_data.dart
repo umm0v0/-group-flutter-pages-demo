@@ -41,15 +41,39 @@ class TeamData {
   static List<ProjectFeature> get features => [
         const ProjectFeature(
           icon: Icons.web,
-          title: 'Flutter Web 单页应用',
-          description: '基于 Material Design 3 的响应式页面',
+          title: 'Flutter Web 应用',
+          description: '基于 Material Design 3 的响应式单页应用，支持亮色/暗色主题切换',
           color: Color(0xFF6366F1),
         ),
         const ProjectFeature(
           icon: Icons.account_tree,
-          title: 'Git Pull Request 协作',
-          description: '分支管理与代码审查流程',
+          title: 'Git 分支协作',
+          description: '多分支并行开发，Pull Request 代码审查，模拟真实团队工作流',
           color: Color(0xFF06B6D4),
+        ),
+        const ProjectFeature(
+          icon: Icons.merge_type,
+          title: 'PR 审核合并',
+          description: 'GitHub Pull Request 创建、代码审查、冲突解决与合并策略实践',
+          color: Color(0xFF8B5CF6),
+        ),
+        const ProjectFeature(
+          icon: Icons.rocket_launch,
+          title: 'GitHub Pages 部署',
+          description: 'Flutter Web 构建产物自动发布到 GitHub Pages，实现静态站点托管',
+          color: Color(0xFFF59E0B),
+        ),
+        const ProjectFeature(
+          icon: Icons.architecture,
+          title: 'Clean Architecture',
+          description: '分层架构设计 — 模型层、数据层、展示层分离，Repository 模式解耦数据源',
+          color: Color(0xFF10B981),
+        ),
+        const ProjectFeature(
+          icon: Icons.animation,
+          title: '动画与交互',
+          description: '自定义波浪裁剪、打字机动画、悬停浮起效果、渐入动画与时间线组件',
+          color: Color(0xFFEF4444),
         ),
       ];
 
