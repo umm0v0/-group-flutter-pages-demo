@@ -1,4 +1,4 @@
-import "package:flutter/material.dart";
+﻿import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:go_router/go_router.dart";
 import "package:group_flutter_pages_demo/features/home/home_page.dart";
@@ -89,6 +89,19 @@ class _AppShell extends ConsumerWidget {
 
     return Scaffold(
       body: child,
+      floatingActionButton: FloatingActionButton.small(
+        onPressed: () {
+          final current = ref.read(themeModeProvider);
+          ref.read(themeModeProvider.notifier).state =
+              current == ThemeMode.light ? ThemeMode.dark : ThemeMode.light;
+        },
+        child: Icon(
+          Theme.of(context).brightness == Brightness.light
+              ? Icons.dark_mode_outlined
+              : Icons.light_mode_outlined,
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       bottomNavigationBar: NavigationBar(
         selectedIndex: currentIndex,
         onDestinationSelected: (index) => _onTap(context, index),
