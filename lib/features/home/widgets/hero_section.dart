@@ -1,4 +1,4 @@
-import 'dart:async';
+﻿import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:group_flutter_pages_demo/core/theme/app_colors.dart';
 import 'package:group_flutter_pages_demo/shared/widgets/responsive_wrapper.dart';
@@ -93,7 +93,7 @@ class _HeroSectionState extends State<HeroSection>
                         borderRadius: BorderRadius.circular(20),
                       ),
                       child: const Text(
-                        'FLUTTER WEB · 小组项目',
+                        'FLUTTER · Android 真机演示',
                         style: TextStyle(
                           fontSize: 12,
                           fontWeight: FontWeight.w600,
