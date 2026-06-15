@@ -1,18 +1,23 @@
-﻿import "package:flutter/material.dart";
-import "package:flutter_riverpod/flutter_riverpod.dart";
-import "package:group_flutter_pages_demo/data/team_data.dart";
-import "package:group_flutter_pages_demo/models/experiment_task.dart";
-import "package:group_flutter_pages_demo/shared/widgets/section_header.dart";
-import "package:group_flutter_pages_demo/core/theme/app_colors.dart";
+﻿import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:group_flutter_pages_demo/data/team_data.dart';
+import 'package:group_flutter_pages_demo/models/experiment_task.dart';
+import 'package:group_flutter_pages_demo/shared/widgets/section_header.dart';
+import 'package:group_flutter_pages_demo/core/theme/app_colors.dart';
 
 class TasksPage extends ConsumerWidget {
   const TasksPage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final tasks = TeamData.tasks;
+    final completed = tasks.where((t) => t.status == TaskStatus.completed).length;
+    final total = tasks.length;
+    final progress = total > 0 ? completed / total : 0.0;
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text("实验任务"),
+        title: const Text('实验任务'),
         centerTitle: false,
       ),
       body: SingleChildScrollView(
@@ -22,11 +27,15 @@ class TasksPage extends ConsumerWidget {
           children: [
             const SectionHeader(
               icon: Icons.checklist,
-              title: "实验任务分工",
-              subtitle: "6个任务项，3名成员各司其职",
+              title: '实验任务分工',
+              subtitle: '6个任务项，3名成员各司其职',
             ),
             const SizedBox(height: 20),
-            ...TeamData.tasks.map((task) => _buildTaskCard(context, task)),
+            // ---- 进度概览卡片 ----
+            _ProgressCard(completed: completed, total: total, progress: progress),
+            const SizedBox(height: 24),
+            // ---- 任务列表 ----
+            ...tasks.map((task) => _buildTaskCard(context, task)),
             const SizedBox(height: 40),
           ],
         ),
@@ -72,20 +81,26 @@ class TasksPage extends ConsumerWidget {
                     height: 1.4,
                   ),
                 ),
-                const SizedBox(height: 8),
-                Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
-                  decoration: BoxDecoration(
-                    color: AppColors.primary.withAlpha(20),
-                    borderRadius: BorderRadius.circular(6),
-                  ),
-                  child: Text(
-                    "负责人：${task.assignee}",
-                    style: theme.textTheme.labelSmall?.copyWith(
-                      color: AppColors.primary,
-                      fontWeight: FontWeight.w600,
+                const SizedBox(height: 10),
+                Row(
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                      decoration: BoxDecoration(
+                        color: AppColors.primary.withAlpha(20),
+                        borderRadius: BorderRadius.circular(6),
+                      ),
+                      child: Text(
+                        '负责人：\',
+                        style: theme.textTheme.labelSmall?.copyWith(
+                          color: AppColors.primary,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
                     ),
-                  ),
+                    const SizedBox(width: 8),
+                    _buildStatusBadge(task.status, theme),
+                  ],
                 ),
               ],
             ),
@@ -125,5 +140,115 @@ class TasksPage extends ConsumerWidget {
           child: const Icon(Icons.radio_button_unchecked, color: Color(0xFFEF4444), size: 22),
         );
     }
+  }
+
+  Widget _buildStatusBadge(TaskStatus status, ThemeData theme) {
+    String label;
+    Color color;
+    switch (status) {
+      case TaskStatus.completed:
+        label = '已完成';
+        color = const Color(0xFF10B981);
+        break;
+      case TaskStatus.inProgress:
+        label = '进行中';
+        color = const Color(0xFFF59E0B);
+        break;
+      case TaskStatus.pending:
+        label = '待开始';
+        color = const Color(0xFFEF4444);
+        break;
+    }
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+      decoration: BoxDecoration(
+        color: color.withAlpha(20),
+        borderRadius: BorderRadius.circular(6),
+      ),
+      child: Text(
+        label,
+        style: theme.textTheme.labelSmall?.copyWith(
+          color: color,
+          fontWeight: FontWeight.w600,
+        ),
+      ),
+    );
+  }
+}
+
+class _ProgressCard extends StatelessWidget {
+  final int completed;
+  final int total;
+  final double progress;
+  const _ProgressCard({
+    required this.completed,
+    required this.total,
+    required this.progress,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final isDark = theme.brightness == Brightness.dark;
+
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: isDark
+              ? [const Color(0xFF1E293B), const Color(0xFF312E81)]
+              : [const Color(0xFFEEF2FF), const Color(0xFFE0E7FF)],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(
+          color: AppColors.primary.withAlpha(40),
+        ),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                '任务进度',
+                style: theme.textTheme.titleMedium?.copyWith(
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              Text(
+                '\ / \',
+                style: theme.textTheme.titleMedium?.copyWith(
+                  fontWeight: FontWeight.w800,
+                  color: AppColors.primary,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 12),
+          ClipRRect(
+            borderRadius: BorderRadius.circular(6),
+            child: LinearProgressIndicator(
+              value: progress,
+              minHeight: 10,
+              backgroundColor: theme.colorScheme.surfaceContainerHighest,
+              valueColor: const AlwaysStoppedAnimation<Color>(AppColors.primary),
+            ),
+          ),
+          const SizedBox(height: 12),
+          Text(
+            progress >= 1.0
+                ? '所有任务已全部完成！真机运行证据已采集。'
+                : '已完成 \%，团队协作持续推进中。',
+            style: theme.textTheme.bodySmall?.copyWith(
+              color: theme.colorScheme.onSurface.withAlpha(180),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
