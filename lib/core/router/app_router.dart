@@ -1,4 +1,5 @@
-﻿import "package:flutter/material.dart";
+﻿import 'package:group_flutter_pages_demo/core/theme/app_theme.dart';
+import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:go_router/go_router.dart";
 import "package:group_flutter_pages_demo/features/home/home_page.dart";

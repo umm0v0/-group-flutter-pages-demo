@@ -1,4 +1,4 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:group_flutter_pages_demo/data/team_data.dart';
 import 'package:group_flutter_pages_demo/models/experiment_task.dart';
@@ -91,7 +91,7 @@ class TasksPage extends ConsumerWidget {
                         borderRadius: BorderRadius.circular(6),
                       ),
                       child: Text(
-                        '负责人：\',
+                        '负责人：${task.assignee}',
                         style: theme.textTheme.labelSmall?.copyWith(
                           color: AppColors.primary,
                           fontWeight: FontWeight.w600,
@@ -220,7 +220,7 @@ class _ProgressCard extends StatelessWidget {
                 ),
               ),
               Text(
-                '\ / \',
+                '$completed / $total',
                 style: theme.textTheme.titleMedium?.copyWith(
                   fontWeight: FontWeight.w800,
                   color: AppColors.primary,
@@ -242,7 +242,7 @@ class _ProgressCard extends StatelessWidget {
           Text(
             progress >= 1.0
                 ? '所有任务已全部完成！真机运行证据已采集。'
-                : '已完成 \%，团队协作持续推进中。',
+                : '已完成 ${(progress * 100).toStringAsFixed(0)}%，团队协作持续推进中。',
             style: theme.textTheme.bodySmall?.copyWith(
               color: theme.colorScheme.onSurface.withAlpha(180),
             ),

@@ -1,4 +1,4 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:group_flutter_pages_demo/data/team_data.dart';
@@ -146,7 +146,7 @@ class MemberDetailPage extends ConsumerWidget {
                           Clipboard.setData(ClipboardData(text: member.githubUrl));
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
-                              content: Text('GitHub 链接已复制: \'),
+                              content: Text('GitHub 链接已复制: ${member.githubUrl}'),
                               duration: const Duration(seconds: 2),
                             ),
                           );
